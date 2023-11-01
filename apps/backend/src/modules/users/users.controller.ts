@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -13,6 +14,7 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
 import { User } from "./entities/user.entity";
 import { SnakeCaseDTO } from "../base/dto/snake-case.dto";
+import { HashPasswordPipe } from "../../app/pipes/hash-password.pipe";
 
 @Controller("users")
 export class UsersController {
@@ -25,8 +27,9 @@ export class UsersController {
     type: User,
     description: "Create a user",
   })
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return await this.usersService.create(createUserDto);
+  @UsePipes(new HashPasswordPipe())
+  async create(@Body() body: CreateUserDto): Promise<User> {
+    return await this.usersService.create(body);
   }
 
   @Get()
