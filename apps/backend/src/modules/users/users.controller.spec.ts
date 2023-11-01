@@ -1,12 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
-import { UsersRepository } from './users.repository';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './entities/user.entity';
-import { BaseRepository } from '../base/base.repository';
-import { ICreateAttributes } from '@monorepo-example/common';
-import { ModelCtor } from 'sequelize-typescript';
+import { Test, TestingModule } from "@nestjs/testing";
+import { UsersController } from "./users.controller";
+import { UsersService } from "./users.service";
+import { UsersRepository } from "./users.repository";
 
 const mockRepository = {
   findById: jest.fn(),
@@ -15,7 +10,7 @@ const mockRepository = {
   create: jest.fn(),
 };
 
-describe('UsersController', () => {
+describe("UsersController", () => {
   let controller: UsersController;
 
   beforeEach(async () => {
@@ -30,7 +25,7 @@ describe('UsersController', () => {
     controller = module.get<UsersController>(UsersController);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 });

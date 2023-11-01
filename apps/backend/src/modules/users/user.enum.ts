@@ -1,12 +1,12 @@
 enum UserStatusEnum {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
+  ACTIVE = "active",
+  INACTIVE = "inactive",
 }
 
 enum RoleEnum {
-  ADMIN = 'admin',
-  USER = 'user',
-  MANAGER = 'manager',
+  ADMIN = "admin",
+  USER = "user",
+  MANAGER = "manager",
 }
 
 export { UserStatusEnum, RoleEnum };

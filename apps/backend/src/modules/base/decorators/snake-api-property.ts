@@ -1,5 +1,5 @@
-import { camelToSnake } from '@monorepo-example/common';
-import { ApiProperty } from '@nestjs/swagger';
+import { camelToSnake } from "@monorepo-example/common";
+import { ApiProperty } from "@nestjs/swagger";
 
 function SnakeApiProperty(): PropertyDecorator {
   return (target: object, propertyKey: string | symbol) => {

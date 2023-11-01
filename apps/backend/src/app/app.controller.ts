@@ -1,13 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get } from "@nestjs/common";
 
-import { AppService } from './app.service';
-import { SnakeCaseObj } from '@monorepo-example/common';
+import { AppService } from "./app.service";
+import { SnakeCaseObj } from "@monorepo-example/common";
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/health')
+  @Get("/health")
   getHealthStatus(): SnakeCaseObj<{ message: string }> {
     return this.appService.getHealth();
   }

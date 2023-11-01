@@ -1,15 +1,15 @@
 // config.module.ts
-import { Module, Global } from '@nestjs/common';
-import { env } from './env';
+import { Module, Global } from "@nestjs/common";
+import { env } from "./env";
 
 @Global()
 @Module({
   providers: [
     {
-      provide: 'AppConfig',
+      provide: "AppConfig",
       useValue: env,
     },
   ],
-  exports: ['AppConfig'],
+  exports: ["AppConfig"],
 })
 export class ConfigModule {}

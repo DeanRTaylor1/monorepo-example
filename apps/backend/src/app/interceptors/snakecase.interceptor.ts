@@ -1,11 +1,11 @@
-import { convertKeysToSnakeCase } from '@monorepo-example/common';
+import { convertKeysToSnakeCase } from "@monorepo-example/common";
 import {
   CallHandler,
   ExecutionContext,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { Observable, map } from 'rxjs';
+} from "@nestjs/common";
+import { Observable, map } from "rxjs";
 
 @Injectable()
 export class SnakeCaseInterceptor implements NestInterceptor {

@@ -8,12 +8,12 @@ import {
   IsEmail,
   Default,
   DataType,
-} from 'sequelize-typescript';
-import { RoleEnum, UserStatusEnum } from '../user.enum';
-import { ApiProperty } from '@nestjs/swagger';
-import { SnakeApiProperty } from '../../base/decorators/snake-api-property';
+} from "sequelize-typescript";
+import { RoleEnum, UserStatusEnum } from "../user.enum";
+import { ApiProperty } from "@nestjs/swagger";
+import { SnakeApiProperty } from "../../base/decorators/snake-api-property";
 
-@Table({ tableName: 'users', timestamps: true, underscored: true })
+@Table({ tableName: "users", timestamps: true, underscored: true })
 export class User extends Model {
   @ApiProperty()
   @PrimaryKey
@@ -27,11 +27,11 @@ export class User extends Model {
   username: string;
 
   @SnakeApiProperty()
-  @Column({ field: 'first_name', type: DataType.STRING })
+  @Column({ field: "first_name", type: DataType.STRING })
   firstName: string;
 
   @SnakeApiProperty()
-  @Column({ field: 'last_name', type: DataType.STRING })
+  @Column({ field: "last_name", type: DataType.STRING })
   lastName: string;
 
   @SnakeApiProperty()
@@ -40,24 +40,24 @@ export class User extends Model {
   @Column(DataType.STRING)
   email: string;
 
-  @Column({ field: 'password', type: DataType.STRING })
+  @Column({ field: "password", type: DataType.STRING })
   password: string;
 
   @SnakeApiProperty()
-  @Default('inactive')
+  @Default("inactive")
   @Column(DataType.ENUM(...Object.values(UserStatusEnum)))
   status: string;
 
   @SnakeApiProperty()
-  @Default('user')
+  @Default("user")
   @Column(DataType.ENUM(...Object.values(RoleEnum)))
   role: string;
 
   @SnakeApiProperty()
-  @Column({ field: 'created_at', type: DataType.DATE })
+  @Column({ field: "created_at", type: DataType.DATE })
   createdAt: Date;
 
   @SnakeApiProperty()
-  @Column({ field: 'updated_at', type: DataType.DATE })
+  @Column({ field: "updated_at", type: DataType.DATE })
   updatedAt: Date;
 }

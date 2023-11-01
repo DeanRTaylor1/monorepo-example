@@ -1,19 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { CallHandler, ExecutionContext } from '@nestjs/common';
-import { lastValueFrom, of } from 'rxjs';
-import { SnakeCaseInterceptor } from './snakecase.interceptor';
+import { Test, TestingModule } from "@nestjs/testing";
+import { CallHandler, ExecutionContext } from "@nestjs/common";
+import { lastValueFrom, of } from "rxjs";
+import { SnakeCaseInterceptor } from "./snakecase.interceptor";
 
-jest.mock('@monorepo-example/common', () => ({
+jest.mock("@monorepo-example/common", () => ({
   convertKeysToSnakeCase: jest.fn((data) => {
     const result = {};
     for (const key in data) {
-      result['snake_' + key] = data[key];
+      result["snake_" + key] = data[key];
     }
     return result;
   }),
 }));
 
-describe('SnakeCaseInterceptor', () => {
+describe("SnakeCaseInterceptor", () => {
   let interceptor: SnakeCaseInterceptor;
 
   beforeEach(async () => {
@@ -24,16 +24,16 @@ describe('SnakeCaseInterceptor', () => {
     interceptor = module.get<SnakeCaseInterceptor>(SnakeCaseInterceptor);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(interceptor).toBeDefined();
   });
 
-  it('should transform keys to snake case', async () => {
+  it("should transform keys to snake case", async () => {
     const mockExecutionContext = {
       switchToHttp: jest.fn(),
     };
     const mockCallHandler: CallHandler = {
-      handle: jest.fn().mockReturnValueOnce(of({ someKey: 'someValue' })),
+      handle: jest.fn().mockReturnValueOnce(of({ someKey: "someValue" })),
     };
 
     const observable = interceptor.intercept(
@@ -42,6 +42,6 @@ describe('SnakeCaseInterceptor', () => {
     );
 
     const data = await lastValueFrom(observable);
-    expect(data).toEqual({ snake_someKey: 'someValue' });
+    expect(data).toEqual({ snake_someKey: "someValue" });
   });
 });

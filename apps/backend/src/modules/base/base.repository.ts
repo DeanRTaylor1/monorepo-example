@@ -1,6 +1,6 @@
-import { ModelCtor, Model } from 'sequelize-typescript';
-import { WhereOptions } from 'sequelize';
-import { ICreateAttributes } from '@monorepo-example/common';
+import { ModelCtor, Model } from "sequelize-typescript";
+import { WhereOptions } from "sequelize";
+import { ICreateAttributes } from "@monorepo-example/common";
 
 export abstract class BaseRepository<M extends Model> {
   protected model: ModelCtor<M>;
@@ -22,5 +22,5 @@ export abstract class BaseRepository<M extends Model> {
     return this.model.destroy({ where });
   }
 
-  abstract create(data: ICreateAttributes<M['_attributes']>): Promise<M>;
+  abstract create(data: ICreateAttributes<M["_attributes"]>): Promise<M>;
 }

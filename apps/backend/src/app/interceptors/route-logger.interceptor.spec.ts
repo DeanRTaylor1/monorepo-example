@@ -1,7 +1,7 @@
-import { RouteLoggerInterceptor } from './route-logger.interceptor';
+import { RouteLoggerInterceptor } from "./route-logger.interceptor";
 
-describe('RouteLoggerInterceptor', () => {
-  it('should be defined', () => {
+describe("RouteLoggerInterceptor", () => {
+  it("should be defined", () => {
     expect(new RouteLoggerInterceptor()).toBeDefined();
   });
 });

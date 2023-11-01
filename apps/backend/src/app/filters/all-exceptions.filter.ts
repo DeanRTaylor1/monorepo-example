@@ -4,7 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
-} from '@nestjs/common';
+} from "@nestjs/common";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -20,7 +20,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const message =
       exception instanceof HttpException
         ? exception.getResponse()
-        : 'Something went wrong';
+        : "Something went wrong";
 
     const errorResponse = {
       code: status,
@@ -30,8 +30,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
       message: message,
     };
 
-    if (process.env.NODE_ENV === 'development') {
-      errorResponse['stack'] = exception['stack'];
+    if (process.env.NODE_ENV === "development") {
+      errorResponse["stack"] = exception["stack"];
     }
 
     response.status(status).json(errorResponse);

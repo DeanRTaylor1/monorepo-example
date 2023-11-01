@@ -1,3 +1,3 @@
-type EnvType = typeof import('./env').env;
+type EnvType = typeof import("./env").env;
 
 export { EnvType };

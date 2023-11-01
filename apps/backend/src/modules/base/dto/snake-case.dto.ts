@@ -1,4 +1,4 @@
-import { SnakeCaseObj, convertKeysToSnakeCase } from '@monorepo-example/common';
+import { SnakeCaseObj, convertKeysToSnakeCase } from "@monorepo-example/common";
 
 class SnakeCaseDTO<T> {
   private originalObject: T;

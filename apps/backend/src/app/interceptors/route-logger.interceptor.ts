@@ -4,9 +4,9 @@ import {
   Injectable,
   Logger,
   NestInterceptor,
-} from '@nestjs/common';
-import { Observable, tap } from 'rxjs';
-import { formatStatus, formatMethod } from '../../utils/format.utils';
+} from "@nestjs/common";
+import { Observable, tap } from "rxjs";
+import { formatStatus, formatMethod } from "../../utils/format.utils";
 
 @Injectable()
 export class RouteLoggerInterceptor implements NestInterceptor {
@@ -18,7 +18,7 @@ export class RouteLoggerInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => {
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.NODE_ENV !== "production") {
           const statusCode = context.switchToHttp().getResponse().statusCode;
           const formattedStatus = formatStatus(statusCode);
           const formattedMethod = formatMethod(method);
