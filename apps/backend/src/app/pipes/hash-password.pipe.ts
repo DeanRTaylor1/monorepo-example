@@ -7,7 +7,7 @@ import {
 import { BinaryLike, randomBytes, scrypt } from "crypto";
 import { promisify } from "util";
 
-const scryptAsync: (
+export const scryptAsync: (
   arg1: BinaryLike,
   arg2: BinaryLike,
   arg3: number
@@ -15,7 +15,7 @@ const scryptAsync: (
 
 @Injectable()
 export class HashPasswordPipe implements PipeTransform {
-  async transform(value: any, metadata: ArgumentMetadata) {
+  async transform(value: any, _metadata: ArgumentMetadata) {
     if (!value.password) {
       throw new BadRequestException("Password field is required");
     }

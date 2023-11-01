@@ -13,8 +13,9 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
 import { User } from "./entities/user.entity";
-import { SnakeCaseDTO } from "../base/dto/snake-case.dto";
 import { HashPasswordPipe } from "../../app/pipes/hash-password.pipe";
+import { LoginUserDto } from "./dto/login-user.dto";
+import { ComparePasswordPipe } from "../../app/pipes/compare-password.pipe";
 
 @Controller("users")
 export class UsersController {
@@ -50,5 +51,11 @@ export class UsersController {
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Post("login")
+  @UsePipes(ComparePasswordPipe)
+  async login(@Body() loginDetails: LoginUserDto): Promise<{ token: string }> {
+    return { token: "success" };
   }
 }
