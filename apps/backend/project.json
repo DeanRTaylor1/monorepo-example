@@ -7,6 +7,9 @@
     "serve-with-db": {
       "command": "yarn be:cleanup; yarn be:pg && yarn be:createdb && yarn be:db:setup"
     },
+    "test-with-db": {
+      "command": "yarn be:cleanup; yarn be:pg && yarn be:createdb && yarn be:db:setup"
+    },
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
@@ -54,6 +57,7 @@
         "jestConfig": "apps/backend/jest.config.ts",
         "passWithNoTests": true
       },
+      "dependsOn": ["test-with-db"],
       "configurations": {
         "ci": {
           "ci": true,

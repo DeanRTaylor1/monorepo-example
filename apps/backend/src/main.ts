@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import { TerminalEscapeCodes } from '@monorepo-example/common';
-import { ExceptionsFilter } from './app/filters/exceptions-filter.filter';
+import { AllExceptionsFilter } from './app/filters/all-exceptions.filter';
 
 class NestApp {
   private app: any;
@@ -24,7 +24,7 @@ class NestApp {
   }
 
   private registerFilters() {
-    this.app.useGlobalFilters(new ExceptionsFilter());
+    this.app.useGlobalFilters(new AllExceptionsFilter());
   }
 
   private registerMiddleware() {

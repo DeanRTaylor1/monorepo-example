@@ -1,14 +1,8 @@
-import { IUser } from '@monorepo-example/common';
-import { Inject, Injectable } from '@nestjs/common';
-import { EnvType } from '../modules/config/env.type';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  constructor(
-    @Inject('AppConfig')
-    private readonly appConfig: EnvType
-  ) {}
-  getData(): { message: string } {
-    return { message: 'Hello api.' };
+  getHealth(): { message: string } {
+    return { message: 'Healthy.' };
   }
 }
