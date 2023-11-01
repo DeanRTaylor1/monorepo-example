@@ -1,14 +1,14 @@
 import { IUser } from '@monorepo-example/common';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { EnvType } from '../modules/config/env.type';
 
 @Injectable()
 export class AppService {
-  getData(): { user: IUser } {
-    const user: IUser = {
-      email: 'email1@email.com',
-      username: 'username',
-      hashedPassword: 'hashedPassword',
-    };
-    return { user };
+  constructor(
+    @Inject('AppConfig')
+    private readonly appConfig: EnvType
+  ) {}
+  getData(): { message: string } {
+    return { message: 'Hello api.' };
   }
 }

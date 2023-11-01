@@ -12,7 +12,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getData(): SnakeCaseObj<IUser> {
-    return convertKeysToSnakeCase(this.appService.getData());
+  getData(): SnakeCaseObj<{ message: string }> {
+    return { message: 'Hello API' };
   }
 }

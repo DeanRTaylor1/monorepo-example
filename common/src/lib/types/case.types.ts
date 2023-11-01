@@ -1,5 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+//disabled for complex types
 type CamelCaseObj<S> = {
-  [K in keyof S as K extends string ? CamelCase<K> : never]: S[K] extends object
+  [K in keyof S as K extends string ? CamelCase<K> : never]: S[K] extends
+    | Date
+    | Array<any>
+    | any
+    ? S[K]
+    : S[K] extends object
     ? CamelCaseObj<S[K]>
     : S[K];
 };
@@ -9,7 +16,12 @@ type CamelCase<S extends string> = S extends `${infer T}_${infer U}${infer V}`
   : Lowercase<S>;
 
 type SnakeCaseObj<S> = {
-  [K in keyof S as K extends string ? SnakeCase<K> : never]: S[K] extends object
+  [K in keyof S as K extends string ? SnakeCase<K> : never]: S[K] extends
+    | Date
+    | Array<any>
+    | any
+    ? S[K]
+    : S[K] extends object
     ? SnakeCaseObj<S[K]>
     : S[K];
 };

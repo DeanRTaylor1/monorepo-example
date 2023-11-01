@@ -4,11 +4,12 @@
   "sourceRoot": "apps/backend/src",
   "projectType": "application",
   "targets": {
+    "serve-with-db": {
+      "command": "yarn be:cleanup; yarn be:pg && yarn be:createdb && yarn be:db:setup"
+    },
     "build": {
       "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "target": "node",
@@ -16,9 +17,7 @@
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
         "tsConfig": "apps/backend/tsconfig.app.json",
-        "assets": [
-          "apps/backend/src/assets"
-        ],
+        "assets": ["apps/backend/src/assets"],
         "isolatedConfig": true,
         "webpackConfig": "apps/backend/webpack.config.js"
       },
@@ -30,9 +29,8 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "backend:build"
-      },
+      "options": {},
+      "dependsOn": ["serve-with-db"],
       "configurations": {
         "development": {
           "buildTarget": "backend:build:development"
@@ -44,20 +42,14 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/backend/**/*.ts"
-        ]
+        "lintFilePatterns": ["apps/backend/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/backend/jest.config.ts",
         "passWithNoTests": true
