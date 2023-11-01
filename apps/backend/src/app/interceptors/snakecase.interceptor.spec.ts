@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CallHandler, ExecutionContext } from '@nestjs/common';
-import { of } from 'rxjs';
+import { lastValueFrom, of } from 'rxjs';
 import { SnakeCaseInterceptor } from './snakecase.interceptor';
 
 jest.mock('@monorepo-example/common', () => ({
@@ -41,7 +41,7 @@ describe('SnakeCaseInterceptor', () => {
       mockCallHandler
     );
 
-    const data = await observable.toPromise();
+    const data = await lastValueFrom(observable);
     expect(data).toEqual({ snake_someKey: 'someValue' });
   });
 });
