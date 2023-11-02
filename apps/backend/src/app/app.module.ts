@@ -8,10 +8,12 @@ import { env } from "./modules/config/env";
 import { Dialect } from "sequelize";
 import { UsersModule } from "./modules/users/users.module";
 import { User } from "./modules/users/entities/user.entity";
-import { APP_INTERCEPTOR } from "@nestjs/core";
+import { APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
 import { SnakeCaseInterceptor } from "./interceptors/snakecase.interceptor";
 import { ResponsesInterceptor } from "./interceptors/responses.interceptor";
 import { RouteLoggerInterceptor } from "./interceptors/route-logger.interceptor";
+import { AuthModule } from "./modules/auth/auth.module";
+import { AuthGuard } from "./modules/auth/auth.guard";
 
 @Module({
   imports: [
@@ -26,10 +28,15 @@ import { RouteLoggerInterceptor } from "./interceptors/route-logger.interceptor"
       models: [User],
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
     {
       provide: APP_INTERCEPTOR,
       useClass: SnakeCaseInterceptor,

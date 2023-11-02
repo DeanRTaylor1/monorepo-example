@@ -7,11 +7,14 @@ import {
 } from "@nestjs/common";
 import { UsersService } from "../modules/users/users.service";
 import { LoginUserDto } from "../modules/users/dto/login-user.dto";
-import { scryptAsync } from "./hash-password.pipe";
+import { AuthService } from "../modules/auth/auth.service";
 
 @Injectable()
 export class ComparePasswordPipe implements PipeTransform {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private authService: AuthService
+  ) {}
 
   async transform(value: LoginUserDto, _metadata: ArgumentMetadata) {
     const { email, password } = value;
@@ -27,7 +30,7 @@ export class ComparePasswordPipe implements PipeTransform {
       throw new BadRequestException("User not found");
     }
 
-    const isMatch = await this.compare({
+    const isMatch = await this.authService.compare({
       storedPassword: user.password,
       suppliedPassword: password,
     });
@@ -36,18 +39,6 @@ export class ComparePasswordPipe implements PipeTransform {
       throw new UnauthorizedException("Incorrect password");
     }
 
-    return { ...value, password: user.password };
-  }
-
-  async compare({
-    storedPassword,
-    suppliedPassword,
-  }: {
-    storedPassword: string;
-    suppliedPassword: string;
-  }): Promise<boolean> {
-    const [hashedPassword, salt] = storedPassword.split(".");
-    const derivedKey = await scryptAsync(suppliedPassword, salt, 64);
-    return derivedKey.toString("hex") === hashedPassword;
+    return { ...value, password: user.password, user };
   }
 }

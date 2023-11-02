@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
 } from "@nestjs/common";
+import { env } from "../modules/config/env";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -22,15 +23,20 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getResponse()
         : "Something went wrong";
 
+    const simplifiedMessage =
+      typeof message === "object"
+        ? (message as HttpException).message
+        : message;
+
     const errorResponse = {
       code: status,
-      timestamp: new Date().toISOString(),
+      message: simplifiedMessage,
       path: request.url,
       method: request.method,
-      message: message,
     };
 
-    if (process.env.NODE_ENV === "development") {
+    if (env.isDev) {
+      errorResponse["timestamp"] = new Date().toISOString();
       errorResponse["stack"] = exception["stack"];
     }
 

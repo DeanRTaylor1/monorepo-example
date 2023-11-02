@@ -1,8 +1,4 @@
-import {
-  ICreateAttributes,
-  IUser,
-  SnakeCaseObj,
-} from "@monorepo-example/common";
+import { ICreateAttributes, IUser, ToSnake } from "@monorepo-example/common";
 import { RoleEnum, UserStatusEnum } from "../user.enum";
 
 import {
@@ -14,7 +10,7 @@ import {
 } from "@nestjs/class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateUserDto implements SnakeCaseObj<ICreateAttributes<IUser>> {
+export class CreateUserDto implements ToSnake<ICreateAttributes<IUser>> {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()

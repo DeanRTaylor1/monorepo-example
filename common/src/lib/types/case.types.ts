@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 //disabled for complex types
-type CamelCaseObj<S> = {
+type ToCamel<S> = {
   [K in keyof S as K extends string ? CamelCase<K> : never]: S[K] extends
     | Date
     | Array<any>
     | any
     ? S[K]
     : S[K] extends object
-    ? CamelCaseObj<S[K]>
+    ? ToCamel<S[K]>
     : S[K];
 };
 
@@ -15,14 +15,14 @@ type CamelCase<S extends string> = S extends `${infer T}_${infer U}${infer V}`
   ? `${Lowercase<T>}${Uppercase<U>}${CamelCase<V>}`
   : Lowercase<S>;
 
-type SnakeCaseObj<S> = {
+type ToSnake<S> = {
   [K in keyof S as K extends string ? SnakeCase<K> : never]: S[K] extends
     | Date
     | Array<any>
     | any
     ? S[K]
     : S[K] extends object
-    ? SnakeCaseObj<S[K]>
+    ? ToSnake<S[K]>
     : S[K];
 };
 
@@ -36,4 +36,4 @@ type RecursiveRecord = {
   [key: string]: Date | string | RecursiveRecord | Array<any> | any;
 };
 
-export { CamelCaseObj, CamelCase, SnakeCaseObj, SnakeCase, RecursiveRecord };
+export { ToCamel, CamelCase, ToSnake, SnakeCase, RecursiveRecord };

@@ -5,11 +5,13 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { User } from "./entities/user.entity";
 import { UsersRepository } from "./users.repository";
 import { ComparePasswordPipe } from "../../pipes/compare-password.pipe";
+import { AuthService } from "../auth/auth.service";
+import { AuthModule } from "../auth/auth.module";
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService, UsersRepository, ComparePasswordPipe],
-  imports: [SequelizeModule.forFeature([User])],
-  exports: [SequelizeModule.forFeature([User])],
+  providers: [UsersService, UsersRepository, ComparePasswordPipe, AuthService],
+  imports: [SequelizeModule.forFeature([User]), AuthModule],
+  exports: [SequelizeModule.forFeature([User]), UsersService, UsersRepository],
 })
 export class UsersModule {}

@@ -2,16 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UsersRepository } from "./users.repository";
-import { convertKeysToCamelCase } from "@monorepo-example/common";
+import { ToCamel } from "@monorepo-example/common";
 
 @Injectable()
 export class UsersService {
   constructor(private usersRepository: UsersRepository) {}
 
-  async create(createUserDto: CreateUserDto) {
-    return this.usersRepository.create(
-      convertKeysToCamelCase(createUserDto as any)
-    );
+  async create(createUserDto: ToCamel<CreateUserDto>) {
+    return this.usersRepository.create(createUserDto);
   }
 
   async findAll() {

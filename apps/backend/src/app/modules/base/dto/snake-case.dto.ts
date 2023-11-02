@@ -1,4 +1,4 @@
-import { SnakeCaseObj, convertKeysToSnakeCase } from "@monorepo-example/common";
+import { ToSnake, convertKeysToSnakeCase } from "@monorepo-example/common";
 
 class SnakeCaseDTO<T> {
   private originalObject: T;
@@ -7,8 +7,8 @@ class SnakeCaseDTO<T> {
     this.originalObject = obj;
   }
 
-  toSnakeCase(): SnakeCaseObj<T> {
-    return convertKeysToSnakeCase(this.originalObject) as SnakeCaseObj<T>;
+  toSnakeCase(): ToSnake<T> {
+    return convertKeysToSnakeCase(this.originalObject) as ToSnake<T>;
   }
 }
 
