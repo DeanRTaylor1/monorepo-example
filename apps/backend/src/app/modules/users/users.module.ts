@@ -4,7 +4,7 @@ import { UsersController } from "./users.controller";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { User } from "./entities/user.entity";
 import { UsersRepository } from "./users.repository";
-import { ComparePasswordPipe } from "../../app/pipes/compare-password.pipe";
+import { ComparePasswordPipe } from "../../pipes/compare-password.pipe";
 
 @Module({
   controllers: [UsersController],

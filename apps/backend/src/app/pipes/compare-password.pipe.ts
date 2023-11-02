@@ -5,8 +5,8 @@ import {
   BadRequestException,
   UnauthorizedException,
 } from "@nestjs/common";
-import { UsersService } from "../../modules/users/users.service";
-import { LoginUserDto } from "../../modules/users/dto/login-user.dto";
+import { UsersService } from "../modules/users/users.service";
+import { LoginUserDto } from "../modules/users/dto/login-user.dto";
 import { scryptAsync } from "./hash-password.pipe";
 
 @Injectable()

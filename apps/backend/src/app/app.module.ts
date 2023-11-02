@@ -2,12 +2,12 @@ import { Module } from "@nestjs/common";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { ConfigModule } from "../modules/config/config.module";
+import { ConfigModule } from "./modules/config/config.module";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { env } from "../modules/config/env";
+import { env } from "./modules/config/env";
 import { Dialect } from "sequelize";
-import { UsersModule } from "../modules/users/users.module";
-import { User } from "../modules/users/entities/user.entity";
+import { UsersModule } from "./modules/users/users.module";
+import { User } from "./modules/users/entities/user.entity";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { SnakeCaseInterceptor } from "./interceptors/snakecase.interceptor";
 import { ResponsesInterceptor } from "./interceptors/responses.interceptor";
