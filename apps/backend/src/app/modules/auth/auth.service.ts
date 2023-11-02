@@ -1,19 +1,13 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { scryptAsync } from "../../../utils/encryption";
-import { env } from "../config/env";
 
 import { randomBytes } from "crypto";
-import * as jwt from "jsonwebtoken";
-import { JwtProps } from "./types/auth.types";
-import { promisify } from "util";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "../users/entities/user.entity";
 import { RoleEnum } from "../users/user.enum";
 
 @Injectable()
 export class AuthService {
   constructor(private jwtService: JwtService) {}
-  private verify = promisify(jwt.verify);
 
   public async hashPassword(password: string): Promise<string> {
     const salt = randomBytes(8).toString("hex");
