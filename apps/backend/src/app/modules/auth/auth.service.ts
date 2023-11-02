@@ -8,6 +8,7 @@ import { JwtProps } from "./types/auth.types";
 import { promisify } from "util";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "../users/entities/user.entity";
+import { RoleEnum } from "../users/user.enum";
 
 @Injectable()
 export class AuthService {
@@ -35,11 +36,13 @@ export class AuthService {
   public async signIn({
     userId,
     email,
+    role,
   }: {
     userId: number;
     email: string;
+    role: RoleEnum;
   }): Promise<{ accessToken: string }> {
-    const payload = { sub: userId, email };
+    const payload = { sub: userId, email, role };
     return {
       accessToken: await this.jwtService.signAsync(payload),
     };

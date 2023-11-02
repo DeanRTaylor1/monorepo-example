@@ -13,7 +13,7 @@ import { SnakeCaseInterceptor } from "./interceptors/snakecase.interceptor";
 import { ResponsesInterceptor } from "./interceptors/responses.interceptor";
 import { RouteLoggerInterceptor } from "./interceptors/route-logger.interceptor";
 import { AuthModule } from "./modules/auth/auth.module";
-import { AuthGuard } from "./modules/auth/auth.guard";
+import { AuthGuard } from "./guards/auth.guard";
 
 @Module({
   imports: [

@@ -17,8 +17,10 @@ import { User } from "./entities/user.entity";
 import { HashPasswordPipe } from "../../pipes/hash-password.pipe";
 import { BodyToCamelCase } from "../../decorators/body-to-camel.decorator";
 import { ToCamel } from "@monorepo-example/common";
-import { AuthGuard } from "../auth/auth.guard";
 import { Public } from "../../decorators/public-route.decorator";
+import { Roles } from "../../decorators/roles.decorator";
+import { RoleEnum } from "./user.enum";
+import { RolesGuard } from "../../guards/roles.guard";
 
 @Controller("users")
 export class UsersController {
@@ -31,6 +33,7 @@ export class UsersController {
     type: User,
     description: "Create a user",
   })
+  @Public()
   @UsePipes(HashPasswordPipe)
   async create(@BodyToCamelCase() body: ToCamel<CreateUserDto>): Promise<User> {
     console.log({ body });
@@ -60,6 +63,8 @@ export class UsersController {
   }
 
   @Patch(":id")
+  @Roles(RoleEnum.ADMIN)
+  @UseGuards(RolesGuard)
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
