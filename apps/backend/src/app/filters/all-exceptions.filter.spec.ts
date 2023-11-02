@@ -48,7 +48,6 @@ describe("AllExceptionsFilter", () => {
       expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.BAD_REQUEST);
       expect(mockResponse.json).toHaveBeenCalledWith({
         code: HttpStatus.BAD_REQUEST,
-        timestamp: expect.any(String),
         path: "/test",
         method: "GET",
         message: "Test Error",
@@ -64,7 +63,6 @@ describe("AllExceptionsFilter", () => {
       );
       expect(mockResponse.json).toHaveBeenCalledWith({
         code: HttpStatus.INTERNAL_SERVER_ERROR,
-        timestamp: expect.any(String),
         path: "/test",
         method: "GET",
         message: "Something went wrong",
