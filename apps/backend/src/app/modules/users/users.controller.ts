@@ -21,6 +21,10 @@ import { Public } from "../../decorators/public-route.decorator";
 import { Roles } from "../../decorators/roles.decorator";
 import { RoleEnum } from "./user.enum";
 import { RolesGuard } from "../../guards/roles.guard";
+import {
+  GetPagination,
+  Pagination,
+} from "../../decorators/pagination.decorator";
 
 @Controller("users")
 export class UsersController {
@@ -47,8 +51,8 @@ export class UsersController {
     type: Array<User>,
     description: "List all users",
   })
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@GetPagination() pagination: Pagination) {
+    return this.usersService.findAll(pagination);
   }
 
   @Get(":id")

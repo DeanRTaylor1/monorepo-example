@@ -3,6 +3,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UsersRepository } from "./users.repository";
 import { ToCamel } from "@monorepo-example/common";
+import { Pagination } from "../../decorators/pagination.decorator";
 
 @Injectable()
 export class UsersService {
@@ -12,8 +13,8 @@ export class UsersService {
     return this.usersRepository.create(createUserDto);
   }
 
-  async findAll() {
-    return this.usersRepository.getAll({ skip: 0, limit: 10 });
+  async findAll({ skip, limit }: Pagination) {
+    return this.usersRepository.getAll({ skip, limit });
   }
 
   async findOne(id: number) {
