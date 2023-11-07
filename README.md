@@ -32,12 +32,12 @@ To get the backend up and running in a development environment, follow these ste
    yarn
    ```
 
-3. **Run the backend**:
-   You can now start the backend with the following command (utilizes Docker):
+3. **Run the Application**:
+   You can now start the application with the following command (utilizes Docker):
    ```bash
-   yarn dev:be
+   yarn dev:docker
    ```
-   This command (`dev:be`) is shorthand for `nx run backend:serve`, as defined in the `scripts` section of `package.json`, which initiates the Nx serve process for the backend application. The server will listen on port 3000, with Swagger documentation accessible at `/api/docs`.
+   This command (`dev:be`) is shorthand for `docker-compose up`, as defined in the `scripts` section of `package.json`, which sets up the database and server containers. More applications can be added to the docker-compose.yml
 
 ## Backend Structure
 
