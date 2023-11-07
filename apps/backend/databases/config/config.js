@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require("path");
 
-require('dotenv').config({
+require("dotenv").config({
   path: path.join(
     process.cwd(),
-    `apps/backend/.env.${process.env.NODE_ENV || 'development'}.local`
+    `apps/backend/.env.${process.env.NODE_ENV || "development"}.local`
   ),
 });
 
@@ -13,7 +13,7 @@ module.exports = {
     password: String(process.env.DB_PASSWORD),
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
     port: 5432,
   },
   test: {
@@ -21,7 +21,7 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
     port: 5432,
   },
   production: {
@@ -29,7 +29,7 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
     port: 5432,
   },
 };

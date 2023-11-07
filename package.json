@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "dev:docker": "yarn be:cleanup; docker-compose up",
     "dev:be": "nx run backend:serve",
+    "api-1:dev:docker": "nx run backend:serve",
     "be:pg": "docker run --name postgres16 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:16-alpine",
     "be:createdb": "sleep 5 && docker exec postgres16 createdb --username=root --owner=root dev_db",
     "be:cleanup": "docker stop postgres16 && docker rm postgres16",
