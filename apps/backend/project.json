@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "serve-with-db": {
-      "command": "yarn be:cleanup; yarn be:pg && yarn be:createdb && yarn be:db:setup"
+      "command": "yarn be:db:setup"
     },
     "test-with-db": {
       "command": "yarn be:cleanup; yarn be:pg && yarn be:createdb && yarn be:db:setup"

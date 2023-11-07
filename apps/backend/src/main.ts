@@ -36,7 +36,7 @@ class NestApp {
   private serveSwagger() {
     const config = new DocumentBuilder()
       .setTitle("Monorepo Example")
-      .setDescription("API description")
+      .setDescription("A starter for a monorepo with at least one nestjs api")
       .setVersion("1.0")
       .addTag("nx-monorepo-backend")
       .build();
@@ -60,7 +60,7 @@ class NestApp {
       "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     );
     Logger.log(
-      `         ${TerminalEscapeCodes.BgGreen}🚀 Application is running on: http://localhost:${this.port}/${this.globalPrefix}.${TerminalEscapeCodes.Reset}`
+      `         ${TerminalEscapeCodes.FgWhite}${TerminalEscapeCodes.BgGreen}🚀 Application is running on: http://localhost:${this.port}/${this.globalPrefix}.${TerminalEscapeCodes.Reset}`
     );
     Logger.log("");
     Logger.log(
