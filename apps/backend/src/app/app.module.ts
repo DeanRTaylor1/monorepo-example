@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Logger, Module } from "@nestjs/common";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -14,6 +14,7 @@ import { ResponsesInterceptor } from "./interceptors/responses.interceptor";
 import { RouteLoggerInterceptor } from "./interceptors/route-logger.interceptor";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AuthGuard } from "./guards/auth.guard";
+import { HandleErrorsInterceptor } from "./interceptors/errors.interceptor";
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { AuthGuard } from "./guards/auth.guard";
   ],
   controllers: [AppController],
   providers: [
+    Logger,
     AppService,
     {
       provide: APP_GUARD,
@@ -48,6 +50,10 @@ import { AuthGuard } from "./guards/auth.guard";
     {
       provide: APP_INTERCEPTOR,
       useClass: RouteLoggerInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: HandleErrorsInterceptor,
     },
   ],
 })

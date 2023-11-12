@@ -11,6 +11,7 @@ dotenv.config({
 
 const env = {
   appPath: __dirname,
+  appVersion: getOsEnv("API_VERSION"),
   apiUrl: getOsEnv("API_URL"),
   nodeEnv: process.env.NODE_ENV || "development",
   isProd: process.env.NODE_ENV === "production",

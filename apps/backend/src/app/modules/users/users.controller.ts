@@ -39,8 +39,10 @@ export class UsersController {
   })
   @Public()
   @UsePipes(HashPasswordPipe)
-  async create(@BodyToCamelCase() body: ToCamel<CreateUserDto>): Promise<User> {
-    console.log({ body });
+  async create(
+    @Body() _: CreateUserDto,
+    @BodyToCamelCase() body: ToCamel<CreateUserDto>
+  ): Promise<User> {
     return await this.usersService.create(body);
   }
 
