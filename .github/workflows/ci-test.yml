@@ -48,3 +48,4 @@ jobs:
           UPLOAD_TYPE: disk
           DISKS_DIR: ./public/
           API_URL: localhost:3000
+          API_VERSION: v1
