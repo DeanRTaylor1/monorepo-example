@@ -11,7 +11,7 @@
     "be:cleanup": "docker stop postgres16 && docker rm postgres16",
     "be:db:setup": "sequelize-cli db:migrate --config apps/backend/databases/config/config.js",
     "be:lint": "nx run backend:lint",
-    "be:test": "nx run backend:test"
+    "be:test": "export NODE_ENV=test && nx run backend:test"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +30,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dotenv": "^16.3.1",
+    "nest-winston": "^1.9.4",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "react": "18.2.0",
@@ -38,7 +39,9 @@
     "rxjs": "^7.8.0",
     "sequelize": "^6.33.0",
     "sequelize-typescript": "^2.1.5",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@nestjs/schematics": "^10.0.1",
